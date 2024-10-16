@@ -11,9 +11,9 @@ class ViewController: UIViewController {
     
     @IBOutlet var cityTableView:UITableView!
     
-    var cities: [String] = ["Colombo","London","Newyork","Tokyo","Soul","Rome","Mathale","Hatton","Kaluthara","Gampaha","Kegalle"]
+    private var cities: [String] = ["Colombo","London","Newyork","Tokyo","Soul","Rome","Mathale","Hatton","Kaluthara","Gampaha","Kegalle"]
     
-    var countryCities: [String: String] = ["Colombo":"Sri Lanka","London":"England","Newyork":"America","Tokyo":"Japan","Soul":"South Korea","Rome":"Italy","Mathale":"Sri Lanka","Hatton":"Sri Lanka","Kaluthara":"Sri Lanka","Gampaha":"Sri Lanka","Kegalle":"Sri Lanka"]
+    private var countryCities: [String: String] = ["Colombo":"Sri Lanka","London":"England","Newyork":"America","Tokyo":"Japan","Soul":"South Korea","Rome":"Italy","Mathale":"Sri Lanka","Hatton":"Sri Lanka","Kaluthara":"Sri Lanka","Gampaha":"Sri Lanka","Kegalle":"Sri Lanka"]
     
     struct Constants {
         static let cellIdentifier = "cityCell"
@@ -53,7 +53,9 @@ extension ViewController: UITableViewDataSource{
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("user tapped on cell at \(indexPath) indexPath")
+        let cityName = cities[indexPath.row]
+        let countryName = countryCities[cityName] ?? ""
+        print("city = \(cityName), country = \(countryName)")
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
